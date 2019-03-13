@@ -32,7 +32,24 @@ function calculatePaths(_gridSize) {
 
 function generatePaths(_gridSize) {
   // TODO: Generate all the possible paths through the grid
-  const paths = ["EEEEEEEEEEEESSSSSSSSSSSS"];
+  const moves = _gridSize*2;
+  const paths = [];
+  
+  function pathFinder(acc="", E = 0, S = 0){
+    if (moves === E+S){
+      paths.push(acc); 
+      return paths; 
+    }
+
+    if (E < moves/2){
+      pathFinder(acc + "E", E + 1, S);
+    }
+
+    if (S < moves/2){
+      pathFinder(acc + "S", E, S+1);
+    }
+  }
+  pathFinder();
   console.log(paths);
   return paths;
 }
